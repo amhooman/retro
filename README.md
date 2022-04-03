@@ -1,45 +1,206 @@
-# combineOS
 
-[![discord](https://img.shields.io/badge/Discord-7qTNdXd?logo=discord&logoColor=white&color=5865F2)](https://discord.com/invite/7qTNdXd)
-[![license](https://badgen.net/github/license/Bored-Entertainment/combineOS/)](LICENSE)
-![size](https://img.shields.io/github/repo-size/Bored-Entertainment/combineOS?color=green)
+# EmulatorJS
 
-## Demos
-- [retro.mesacomplex.tk](https://retro.mesacomplex.tk/)
+Self-hosted **Javascript** emulation for various system.
 
-## Built with
-- Apps from [98.js](https://github.com/1j01/98)
-  - [jspaint](https://github.com/1j01/jspaint)
-  - [3d pipes](https://github.com/1j01/pipes)
-  - [Minesweeper](https://github.com/ziebelje/minesweeper)
-  - [Solitaire](https://github.com/rjanjic/js-solitaire)
-  - [3D Pinball](https://github.com/alula/SpaceCadetPinball)
-  - [Webamp](https://github.com/captbaritone/webamp)
-  - [3D Flower Box](https://github.com/kevin-shannon/3D-FlowerBox)
-  - [MS-DOS Prompt](https://js-dos.com)
-  - [Calculator](https://github.com/muzam1l/mcalculator)
-  - [Clippy](https://github.com/smore-inc/clippy.js)
-- Libraries from [98.js](https://github.com/1j01/98)
-  -  [OS-GUI.js](https://os-gui.js.org)
-  -  [BrowserFS](https://github.com/jvilk/BrowserFS)
-  -  [jQuery](https://github.com/jquery/jquery)
-  -  [Pointer Events Polyfill](https://github.com/jquery/PEP)
-  -  [FileSaver.js](https://github.com/eligrey/FileSaver.js/)
-  -  and many more
+<br>
 
-## Contributing
+*If something doesn't work, please consider opening an* ***[Issue]*** <br>
+*with as many details as possible, as well as the console log.*
 
-Pull requests are welcome. If you find any problem(s) in boredhtml, feel free to submit an issue. This includes stuff like vulnerabilities, or even the most trivial issues (such as typoes.) If you know how to fix an issue, feel free to make a pull request for the issue. 
+*The* ***Screen Recording*** *option currently doesn't support* ***Audio*** *.*
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our [code of conduct](CODE_OF_CONDUCT.md), and the process for submitting pull requests to us. If you would like to suggest a feature or change, submit it as an issue as well or message us on [discord](https://discord.com/invite/7qTNdXd); it will be given the appropriate tag once we have seen it. We love to discuss any major changes with you.
+---
 
-## Authors
+**⸢ [Example Use] ⸥ ⸢ [Emulator Demo] ⸥ ⸢ [Beta] ⸥**
 
-- **[PiSaucer](https://github.com/PiSaucer)** - *Initial work*
-- **[dependabot](https://github.com/apps/dependabot)** - Checks Security of code
+---
 
-See also the list of other [contributors](https://github.com/Bored-Entertainment/combineOS/contributors) who participated in this project.
- 
-## License [![license](https://badgen.net/github/license/Bored-Entertainment/combineOS/)](LICENSE)
+## Where Did I Get This?
 
-Our [`LICENSE`](LICENSE) file is based off of the [MIT License](https://choosealicense.com/licenses/mit/).
+> So I found this website called [EmulatorJS.com][EJS] and <br>
+> I went into inspect and downloaded the resources.<br>
+> <br>
+> I removed the ad server, and made everything work within your own domain.<br>
+> <br>
+> [This repository] may soon make it possible to use all this open source.<br>
+> <br>
+> The emulator is not illegal - the rom is - I am not responsible <br>
+> for what people decide to do with this software.
+
+---
+
+## Supported Systems
+
+#### Nintendo
+
+**[Game Boy Advance][Nintendo Game Boy Advance]** | **[Famicom / NES][NES / Famicom]** | **[Virtual Boy][Virtual Boy]** | **[Game Boy][Nintendo Game Boy]** | **[SNES]** | **[DS][Nintendo DS]** | **[64][Nintendo 64]**
+
+#### Sega
+**[Master System][Sega Master System]** | **[Mega Drive][Sega Mega Drive]** | **[Game Gear][Sega Game Gear]** | **[Saturn][Sega Saturn]** | **[32X][Sega 32X]** | **[CD][Sega CD]**
+
+#### Atari
+
+**[Jaguar][Atari Jaguar]** | **[Lynx][Atari Lynx]** | **[7800][Atari 7800]** | **[2600][Atari 2600]**
+
+#### Other
+
+**[TurboGrafs 16 PC Engine][TurboGrafs-16 / PC Engine]** | **[WanderSwan Color][WanderSwan / Color]** | **[Neo Geo Poket][Neo Geo Poket]** | **[PlayStation]** | **[Arcade]** | **[MSX]** | **[3DO]**
+
+---
+
+
+## Usage
+
+*For questions please use the* ***[Issue]*** *tab.*
+
+<br>
+
+##### Setup
+
+1. Download this repository.<br>
+    *`Code ➞ Download As Zip`*
+
+2. Use a **WebServer** to host the emulator.
+
+3. Use your **Browser** to navigate to `localhost`
+
+<br>
+
+##### ROMs
+
+**ROMs** can be used as `zip` / `rar` / `7z` archives.
+
+<br>
+
+##### Netplay
+
+By default **Netplay** is ***disabled***, <br>
+to enable it, add the following:
+
+```js
+// ID in your website, required for netplay. Each game in your site should have a different ID
+EJS_gameID = 1;
+```
+
+<br>
+
+*I have successfully rewrote the server side portion* <br>
+*of netplay, which you can now use to self host!*
+
+1. Download the **[Server]**.
+
+2. Specify the servers address with:
+
+```js
+EJS_netplayUrl = 'http://localhost:3000/'; // Absolute Url To Your Netplay Server
+```
+
+<br>
+
+##### Custom Saves
+
+To customize the filename of save states <br>
+simply add the following lines of code.
+
+```js
+EJS_gameName = `Game Name`;
+```
+
+**➞ Save Filename:** `Game Name.state`
+
+<br>
+
+##### AD
+
+To place an advertisement in front of the <br>
+`play now` screen, include the following line:
+
+```js
+EJS_AdUrl = `URL`;
+```
+
+<br>
+
+##### Interface Color
+
+To use a different color for the emulator interface, use:
+
+```js
+EJS_color = '#FF0000'; // Hex Color Code
+```
+
+<br>
+
+##### Direct Start
+
+To start the emulator immediately, add this line:
+
+```js
+EJS_startOnLoaded = true;
+```
+
+*For audio to play the user still* <br>
+*needs to interact with the page.*
+
+<br>
+
+##### Custom Paths
+
+Paths to emulator files can be customized with:
+
+```js
+EJS_paths = {
+    'fileName' : '/somepath',
+    'emulator.js' : 'https://example.com/emulator.js',
+    'n64-asmjs.data' : '/asdfds.data'
+};
+```
+
+*If a file is not defined, the default is used.*
+
+
+# LICENSE
+
+Licenced under the Apache License 2.0
+
+Read the whole license [here](LICENSE)
+
+
+<!----------------------------------------------------------------------------->
+
+[Example Use]: https://coldcast.org/games/1/Super-Mario-Bros
+[Emulator Demo]: https://ethanaobrien.github.io/emulatorjs/
+[Beta]: https://emulatorjs.netlify.app/
+
+[Issue]: https://github.com/ethanaobrien/emulatorjs/issues
+[This repository]: https://github.com/linuxserver/emulatorjs
+
+[EJS]: https://www.emulatorjs.com/
+
+[Server]: https://github.com/ethanaobrien/emuserver/releases
+
+[NES / Famicom]: docs/NES-Famicom.md
+[SNES]: docs/SNES.md
+[Nintendo 64]: docs/Nintendo%2064.md
+[Nintendo Game Boy]: docs/Nintendo%20Game%20Boy.md
+[Nintendo Game Boy Advance]: docs/Nintendo%20Game%20Boy%20Advance.md
+[Nintendo DS]: docs/Nintendo%20DS.md
+[PlayStation]: docs/PlayStation.md
+[Virtual Boy]: docs/Virtual%20Boy.md
+[Sega Mega Drive]: docs/Sega%20Mega%20Drive.md
+[Sega Master System]: docs/Sega%20Master%20System.md
+[Sega CD]: docs/Sega%20CD.md
+[Atari Lynx]: docs/Atari%20Lynx.md
+[MSX]: docs/MSX.md
+[3DO]: docs/3DO.md
+[Sega 32X]: docs/Sega%2032X.md
+[Atari Jaguar]: docs/Atari%20Jaguar.md
+[Neo Geo Poket]: docs/Neo%20Geo%20Poket.md
+[Sega Game Gear]: docs/Sega%20Game%20Gear.md
+[Sega Saturn]: docs/Sega%20Saturn.md
+[Atari 7800]: docs/Atari%207800.md
+[WanderSwan / Color]: docs/WanderSwan-Color.md
+[TurboGrafs-16 / PC Engine]: docs/TurboGrafs%2016-PC%20Engine.md
+[Arcade]: docs/Arcade.md
+[Atari 2600]: docs/Atari%202600.md
