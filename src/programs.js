@@ -1475,12 +1475,12 @@ add_icon_not_via_filesystem({
 });
 
 add_icon_not_via_filesystem({
-    title: "Cookie Clicker",
-    iconID: "cookieclicker",
+    title: "My Fnf Mod",
+    iconID: "fnf",
     open: function() {
         Task(make_iframe_window({
-            src: "/games/cookieclicker/index.html",
-            icons: iconsAtTwoSizes("cookieclicker"),
+            src: "/games/mymod/index.html",
+            icons: iconsAtTwoSizes("fnf"),
             title: "Slash Flash",
             outerWidth: 600,
             outerHeight: 475,
