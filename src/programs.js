@@ -1495,7 +1495,7 @@ add_icon_not_via_filesystem({
     iconID: "fnf",
     open: function() {
         Task(make_iframe_window({
-            src: "/games/badapple2/index.html",
+            src: "/games/fnf2/index.html",
             icons: iconsAtTwoSizes("fnf"),
             title: "Fnf Bad Apple Mod",
             outerWidth: 750,
