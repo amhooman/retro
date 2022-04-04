@@ -1482,7 +1482,7 @@ add_icon_not_via_filesystem({
             src: "/games/mymod/index.html",
             icons: iconsAtTwoSizes("fnf"),
             title: "Slash Flash",
-            outerWidth: 750,
+            outerWidth: 800,
             outerHeight: 475,
             resizable: true,
         }));
@@ -1498,7 +1498,7 @@ add_icon_not_via_filesystem({
             src: "/games/fnf2/nightly/index.html",
             icons: iconsAtTwoSizes("fnf"),
             title: "Fnf Bad Apple Mod",
-            outerWidth: 750,
+            outerWidth: 800,
             outerHeight: 475,
             resizable: true,
         }));
