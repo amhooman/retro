@@ -1459,6 +1459,38 @@ add_icon_not_via_filesystem({
 });
 
 add_icon_not_via_filesystem({
+    title: "Cut the Rope",
+    iconID: "ctr",
+    open: function() {
+        Task(make_iframe_window({
+            src: "/games/ctr/index.html",
+            icons: iconsAtTwoSizes("ctr"),
+            title: "Slash Flash",
+            outerWidth: 600,
+            outerHeight: 475,
+            resizable: true,
+        }));
+    },
+    shortcut: true,
+});
+
+add_icon_not_via_filesystem({
+    title: "Cookie Clicker",
+    iconID: "cookieclicker",
+    open: function() {
+        Task(make_iframe_window({
+            src: "/games/cookieclicker/index.html",
+            icons: iconsAtTwoSizes("cookieclicker"),
+            title: "Slash Flash",
+            outerWidth: 600,
+            outerHeight: 475,
+            resizable: true,
+        }));
+    },
+    shortcut: true,
+});
+
+add_icon_not_via_filesystem({
     title: "My R",
     iconID: "chat",
     open: function() {
