@@ -1482,7 +1482,23 @@ add_icon_not_via_filesystem({
             src: "/games/mymod/index.html",
             icons: iconsAtTwoSizes("fnf"),
             title: "Slash Flash",
-            outerWidth: 600,
+            outerWidth: 750,
+            outerHeight: 475,
+            resizable: true,
+        }));
+    },
+    shortcut: true,
+});
+
+add_icon_not_via_filesystem({
+    title: "Fnf Bad Apple Mod",
+    iconID: "fnf",
+    open: function() {
+        Task(make_iframe_window({
+            src: "/games/badapple2/index.html",
+            icons: iconsAtTwoSizes("fnf"),
+            title: "Fnf Bad Apple Mod",
+            outerWidth: 750,
             outerHeight: 475,
             resizable: true,
         }));
