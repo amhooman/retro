@@ -1315,7 +1315,7 @@ add_icon_not_via_filesystem({
     iconID: "pinball",
     open: function() {
         Task(make_iframe_window({
-            src: "/programs/pinball/space-cadet.html",
+            src: "https://amhooman.github.io/retro/programs/pinball/space-cadet.html",
             icons: iconsAtTwoSizes("pinball"),
             title: "pinball",
             outerWidth: 600,
@@ -1331,7 +1331,7 @@ add_icon_not_via_filesystem({
     iconID: "minesweeper",
     open: function() {
         Task(make_iframe_window({
-            src: "/programs/minesweeper/index.html",
+            src: "https://amhooman.github.io/retro/programs/minesweeper/index.html",
             icons: iconsAtTwoSizes("minesweeper"),
             title: "Minesweeper",
             outerWidth: 400,
@@ -1347,7 +1347,7 @@ add_icon_not_via_filesystem({
     iconID: "atari-gameroom",
     open: function() {
         Task(make_iframe_window({
-            src: "/programs/atari-gameroom/index.html",
+            src: "https://amhooman.github.io/retro/programs/atari-gameroom/index.html",
             icons: iconsAtTwoSizes("atari-gameroom"),
             title: "Atari Gameroom",
             outerWidth: 600,
@@ -1363,7 +1363,7 @@ add_icon_not_via_filesystem({
     iconID: "emulator-js",
     open: function() {
         Task(make_iframe_window({
-            src: "/programs/emulator.js/index.html",
+            src: "https://amhooman.github.io/retro/programs/emulator.js/index.html",
             icons: iconsAtTwoSizes("emulator-js"),
             title: "emulator-js",
             outerWidth: 600,
@@ -1381,7 +1381,7 @@ add_icon_not_via_filesystem({
     iconID: "chat",
     open: function() {
         Task(make_iframe_window({
-            src: "/programs/turbografx-16/index.html",
+            src: "https://amhooman.github.io/retro/programs/turbografx-16/index.html",
             icons: iconsAtTwoSizes("chat"),
             title: "Turbo Grafx-16",
             outerWidth: 660,
@@ -1397,7 +1397,7 @@ add_icon_not_via_filesystem({
     iconID: "desmume",
     open: function() {
         Task(make_iframe_window({
-            src: "/games/nds/index.html",
+            src: "https://amhooman.github.io/retro/games/nds/index.html",
             icons: iconsAtTwoSizes("desmume"),
             title: "desmume ds emulator",
             outerWidth: 660,
@@ -1413,7 +1413,7 @@ add_icon_not_via_filesystem({
     iconID: "vba",
     open: function() {
         Task(make_iframe_window({
-            src: "/programs/vba/index.html",
+            src: "https://amhooman.github.io/retro/programs/vba/index.html",
             icons: iconsAtTwoSizes("vba"),
             title: "gba emulator",
             outerWidth: 660,
@@ -1429,7 +1429,7 @@ add_icon_not_via_filesystem({
     iconID: "chat",
     open: function() {
         Task(make_iframe_window({
-            src: "/games/index.html",
+            src: "https://amhooman.github.io/retro/games/index.html",
             icons: iconsAtTwoSizes("chat"),
             title: "Slash Flash",
             outerWidth: 600,
@@ -1447,7 +1447,7 @@ add_icon_not_via_filesystem({
     iconID: "chat",
     open: function() {
         Task(make_iframe_window({
-            src: "/chat/index.html",
+            src: "https://amhooman.github.io/retro/chat/index.html",
             icons: iconsAtTwoSizes("chat"),
             title: "Chat",
             outerWidth: 600,
@@ -1463,7 +1463,7 @@ add_icon_not_via_filesystem({
     iconID: "ctr",
     open: function() {
         Task(make_iframe_window({
-            src: "/games/ctr/index.html",
+            src: "https://amhooman.github.io/retro/games/ctr/index.html",
             icons: iconsAtTwoSizes("ctr"),
             title: "Slash Flash",
             outerWidth: 600,
@@ -1479,7 +1479,7 @@ add_icon_not_via_filesystem({
     iconID: "fnf",
     open: function() {
         Task(make_iframe_window({
-            src: "/games/mymod/index.html",
+            src: "https://amhooman.github.io/retro/games/mymod/index.html",
             icons: iconsAtTwoSizes("fnf"),
             title: "Slash Flash",
             outerWidth: 800,
@@ -1495,7 +1495,7 @@ add_icon_not_via_filesystem({
     iconID: "fnf",
     open: function() {
         Task(make_iframe_window({
-            src: "/games/fnf2/nightly/index.html",
+            src: "https://amhooman.github.io/retro/games/fnf2/nightly/index.html",
             icons: iconsAtTwoSizes("fnf"),
             title: "Fnf Bad Apple Mod",
             outerWidth: 800,
@@ -1511,7 +1511,7 @@ add_icon_not_via_filesystem({
     iconID: "chat",
     open: function() {
         Task(make_iframe_window({
-            src: "/games/r/index.html",
+            src: "https://amhooman.github.io/retro/games/r/index.html",
             icons: iconsAtTwoSizes("chat"),
             title: "My R",
             outerWidth: 1315,
@@ -1527,7 +1527,7 @@ add_icon_not_via_filesystem({
     iconID: "chat",
     open: function() {
         Task(make_iframe_window({
-            src: "/games/applebad/index.html",
+            src: "https://amhooman.github.io/retro/games/applebad/index.html",
             icons: iconsAtTwoSizes("chat"),
             title: "Bad Apple",
             outerWidth: 810,
@@ -1544,7 +1544,7 @@ add_icon_not_via_filesystem({
     iconID: "chat",
     open: function() {
         Task(make_iframe_window({
-            src: "/games/HexGL/index.html",
+            src: "https://amhooman.github.io/retro/games/HexGL/index.html",
             icons: iconsAtTwoSizes("chat"),
             title: "HexGL",
             outerWidth: 600,
