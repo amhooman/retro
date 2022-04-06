@@ -1561,8 +1561,8 @@ folder_view.arrange_icons();
 
 function iconsAtTwoSizes(iconID) {
     return {
-        16: `images/icons/${iconID}-16x16.png`,
-        32: `images/icons/${iconID}-32x32.png`,
+        16: `https://amhooman.github.io/retro/images/icons/${iconID}-16x16.png`,
+        32: `https://amhooman.github.io/retro/images/icons/${iconID}-32x32.png`,
     };
 }
 
