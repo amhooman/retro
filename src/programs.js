@@ -1475,6 +1475,22 @@ add_icon_not_via_filesystem({
 });
 
 add_icon_not_via_filesystem({
+    title: "Fireboy And Watergirl Forest Temple",
+    iconID: "chat",
+    open: function() {
+        Task(make_iframe_window({
+            src: "https://amhooman.github.io/themesacomplex/games/fireboywatergirl/src/index.html",
+            icons: iconsAtTwoSizes("chat"),
+            title: "fireboy and watergirl",
+            outerWidth: 800,
+            outerHeight: 475,
+            resizable: true,
+        }));
+    },
+    shortcut: true,
+});
+
+add_icon_not_via_filesystem({
     title: "My Fnf Mod",
     iconID: "fnf",
     open: function() {
