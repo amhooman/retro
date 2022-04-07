@@ -1507,22 +1507,6 @@ add_icon_not_via_filesystem({
 });
 
 add_icon_not_via_filesystem({
-    title: "Fireboy And Watergirl Forest Temple",
-    iconID: "chat",
-    open: function() {
-        Task(make_iframe_window({
-            src: "https://amhooman.github.io/themesacomplex/games/fireboywatergirl/src/index.html",
-            icons: iconsAtTwoSizes("chat"),
-            title: "My R",
-            outerWidth: 1315,
-            outerHeight: 765,
-            resizable: true,
-        }));
-    },
-    shortcut: true,
-});
-
-add_icon_not_via_filesystem({
     title: "Fnf Bad Apple Mod",
     iconID: "fnf",
     open: function() {
