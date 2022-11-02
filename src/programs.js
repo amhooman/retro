@@ -1429,7 +1429,7 @@ add_icon_not_via_filesystem({
     iconID: "chat",
     open: function() {
         Task(make_iframe_window({
-            src: "https://amhooman.github.io/retro/games/index.html",
+            src: "http://swordslasher.com",
             icons: iconsAtTwoSizes("chat"),
             title: "Slash Flash",
             outerWidth: 600,
