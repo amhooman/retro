@@ -1,4 +1,4 @@
-function show_help(options) {
+﻿function show_help(options) {
     const $help_window = $Window({
         title: options.title || "Help Topics",
         icons: iconsAtTwoSizes("chm"),
@@ -6,9 +6,11 @@ function show_help(options) {
     })
     $help_window.addClass("help-window");
 
+
     let ignore_one_load = true;
     let back_length = 0;
     let forward_length = 0;
+
 
     const $main = $(E("div")).addClass("main");
     const $toolbar = $(E("div")).addClass("toolbar");
@@ -78,6 +80,7 @@ function show_help(options) {
         iframe.src = "help/online_support.htm";
     });
 
+
     const $iframe = $("<iframe sandbox='allow-same-origin allow-scripts allow-forms allow-modals allow-popups allow-downloads'>")
         .attr({ src: "help/default.html" })
         .addClass("inset-deep");
@@ -86,6 +89,7 @@ function show_help(options) {
     iframe.$window = $help_window; // for focus handling integration
     const $resizer = $(E("div")).addClass("resizer");
     const $contents = $(E("ul")).addClass("contents inset-deep");
+
 
     // TODO: fix race conditions
     $iframe.on("load", () => {
@@ -98,10 +102,13 @@ function show_help(options) {
         $help_window.triggerHandler("update-buttons");
     });
 
+
     $main.append($contents, $resizer, $iframe);
     $help_window.$content.append($toolbar, $main);
 
+
     $help_window.css({ width: 800, height: 600 });
+
 
     $iframe.attr({ name: "help-frame" });
     $iframe.css({
@@ -114,9 +121,11 @@ function show_help(options) {
     });
     $help_window.center();
 
+
     $main.css({
         position: "relative", // for resizer
     });
+
 
     const resizer_width = 4;
     $resizer.css({
@@ -159,6 +168,7 @@ function show_help(options) {
         });
     });
 
+
     const parse_object_params = $object => {
         // parse an $(<object>) to a plain object of key value pairs
         const object = {};
@@ -168,7 +178,9 @@ function show_help(options) {
         return object;
     };
 
+
     let $last_expanded;
+
 
     const make_$item = text => {
         const $item = $(E("div")).addClass("item").text(text);
@@ -189,22 +201,27 @@ function show_help(options) {
         return $item;
     };
 
+
     const $default_item_li = $(E("li")).addClass("page");
     $default_item_li.append(make_$item("Welcome to Help").on("click", () => {
         $iframe.attr({ src: "help/default.html" });
     }));
     $contents.append($default_item_li);
 
+
     function renderItemFromContents(source_li, $folder_items_ul) {
         const object = parse_object_params($(source_li).children("object"));
         if ($(source_li).find("li").length > 0) {
+
 
             const $folder_li = $(E("li")).addClass("folder");
             $folder_li.append(make_$item(object.Name));
             $contents.append($folder_li);
 
+
             const $folder_items_ul = $(E("ul"));
             $folder_li.append($folder_items_ul);
+
 
             $(source_li).children("ul").children().get().forEach((li) => {
                 renderItemFromContents(li, $folder_items_ul);
@@ -222,30 +239,34 @@ function show_help(options) {
         }
     }
 
+
     $.get(options.contentsFile, hhc => {
         $($.parseHTML(hhc)).filter("ul").children().get().forEach((li) => {
             renderItemFromContents(li, null);
         });
     });
 
+
     // @TODO: keyboard accessability
     // $help_window.on("keydown", (e)=> {
-    // 	switch(e.keyCode){
-    // 		case 37:
-    // 			show_error_message("MOVE IT");
-    // 			break;
-    // 	}
+    //         switch(e.keyCode){
+    //                 case 37:
+    //                         show_error_message("MOVE IT");
+    //                         break;
+    //         }
     // });
     var task = new Task($help_window);
     task.$help_window = $help_window;
     return task;
 }
 
+
 function Flash(file_path) {
     // TODO: DRY the default file names and title code (use document.title of the page in the iframe, in make_iframe_window)
     var document_title = file_path ? file_name_from_path(file_path) : "Untitled";
     var win_title = document_title + " - Flash";
     // TODO: focus existing window if file is currently open?
+
 
     var $win = make_iframe_window({
         src: "programs/flash/" + (file_path ? ("?swf=" + file_path) : ""),
@@ -259,11 +280,13 @@ function Flash(file_path) {
 }
 Flash.acceptsFilePaths = true;
 
+
 function DOSBoxGames(file_path) {
     // TODO: DRY the default file names and title code (use document.title of the page in the iframe, in make_iframe_window)
     var document_title = file_path ? file_name_from_path(file_path) : "Untitled";
     var win_title = document_title + " - DOSBox";
     // TODO: focus existing window if file is currently open?
+
 
     var $win = make_iframe_window({
         src: "programs/dosbox/" + (file_path ? ("?soft=" + file_name_from_path(file_path).replace(".zip", "")) : ""),
@@ -277,11 +300,13 @@ function DOSBoxGames(file_path) {
 }
 DOSBoxGames.acceptsFilePaths = true;
 
+
 function Notepad(file_path) {
     // TODO: DRY the default file names and title code (use document.title of the page in the iframe, in make_iframe_window)
     var document_title = file_path ? file_name_from_path(file_path) : "Untitled";
     var win_title = document_title + " - Notepad";
     // TODO: focus existing window if file is currently open?
+
 
     var $win = make_iframe_window({
         src: "programs/notepad/" + (file_path ? ("?path=" + file_path) : ""),
@@ -295,6 +320,7 @@ function Notepad(file_path) {
 }
 Notepad.acceptsFilePaths = true;
 
+
 function Paint(file_path) {
     var $win = make_iframe_window({
         src: "programs/jspaint/",
@@ -307,7 +333,9 @@ function Paint(file_path) {
         minOuterHeight: 400,
     });
 
+
     var contentWindow = $win.$iframe[0].contentWindow;
+
 
     var waitUntil = function(test, interval, callback) {
         if (test()) {
@@ -316,6 +344,7 @@ function Paint(file_path) {
             setTimeout(waitUntil, interval, test, interval, callback);
         }
     };
+
 
     const systemHooks = {
         readBlobFromHandle: (file_path) => {
@@ -363,9 +392,11 @@ function Paint(file_path) {
         },
     };
 
+
     // it seems like I should be able to use onload here, but when it works (overrides the function),
     // it for some reason *breaks the scrollbar styling* in jspaint
     // I don't know what's going on there
+
 
     // contentWindow.addEventListener("load", function(){
     // $(contentWindow).on("load", function(){
@@ -373,6 +404,7 @@ function Paint(file_path) {
     // $win.$iframe[0].addEventListener("load", function(){
     waitUntil(() => contentWindow.systemHooks, 500, () => {
         Object.assign(contentWindow.systemHooks, systemHooks);
+
 
         let $help_window;
         contentWindow.show_help = () => {
@@ -390,6 +422,7 @@ function Paint(file_path) {
             });
         };
 
+
         if (file_path) {
             // window.initial_system_file_handle = ...; is too late to set this here
             // contentWindow.open_from_file_handle(...); doesn't exist
@@ -403,6 +436,7 @@ function Paint(file_path) {
             });
         }
 
+
         var old_update_title = contentWindow.update_title;
         contentWindow.update_title = () => {
             old_update_title();
@@ -410,9 +444,11 @@ function Paint(file_path) {
         };
     });
 
+
     return new Task($win);
 }
 Paint.acceptsFilePaths = true;
+
 
 function Minesweeper() {
     var $win = make_iframe_window({
@@ -425,6 +461,7 @@ function Minesweeper() {
     });
     return new Task($win);
 }
+
 
 function SoundRecorder(file_path) {
     // TODO: DRY the default file names and title code (use document.title of the page in the iframe, in make_iframe_window)
@@ -444,6 +481,7 @@ function SoundRecorder(file_path) {
 }
 SoundRecorder.acceptsFilePaths = true;
 
+
 function Solitaire() {
     var $win = make_iframe_window({
         src: "programs/js-solitaire/",
@@ -454,6 +492,7 @@ function Solitaire() {
     });
     return new Task($win);
 }
+
 
 function showScreensaver(iframeSrc) {
     const mouseDistanceToExit = 15;
@@ -522,14 +561,17 @@ function showScreensaver(iframeSrc) {
     window.addEventListener("keydown", keydownHandler, true);
 }
 
+
 function Pipes() {
     const options = { hideUI: true };
     showScreensaver(`programs/pipes/#${encodeURIComponent(JSON.stringify(options))}`);
 }
 
+
 function FlowerBox() {
     showScreensaver("programs/3D-FlowerBox/");
 }
+
 
 function CommandPrompt() {
     var $win = make_iframe_window({
@@ -569,15 +611,16 @@ function CommandPrompt() {
         },
         // TODO: make the API simpler / more flexible like:
         // constrainDimensions({ innerWidth, innerHeight }) {
-        // 	const charWidth = 8;
-        // 	const charHeight = 16;
-        // 	innerWidth = Math.floor(innerWidth / charWidth) * charWidth;
-        // 	innerHeight = Math.floor(innerHeight / charHeight) * charHeight;
-        // 	return { innerWidth, innerHeight };
+        //         const charWidth = 8;
+        //         const charHeight = 16;
+        //         innerWidth = Math.floor(innerWidth / charWidth) * charWidth;
+        //         innerHeight = Math.floor(innerHeight / charHeight) * charHeight;
+        //         return { innerWidth, innerHeight };
         // },
     });
     return new Task($win);
 }
+
 
 function Calculator() {
     var $win = make_iframe_window({
@@ -591,6 +634,7 @@ function Calculator() {
     });
     return new Task($win);
 }
+
 
 function Pinball() {
     var $win = make_iframe_window({
@@ -634,6 +678,7 @@ function Pinball() {
     return new Task($win);
 }
 
+
 function Explorer(address) {
     // TODO: DRY the default file names and title code (use document.title of the page in the iframe, in make_iframe_window)
     var document_title = address;
@@ -653,6 +698,7 @@ function Explorer(address) {
     return new Task($win);
 }
 Explorer.acceptsFilePaths = true;
+
 
 var webamp_bundle_loaded = false;
 var load_winamp_bundle_if_not_loaded = function(includeButterchurn, callback) {
@@ -676,6 +722,7 @@ var load_winamp_bundle_if_not_loaded = function(includeButterchurn, callback) {
     }
 }
 
+
 // from https://github.com/jberg/butterchurn/blob/master/src/isSupported.js
 const isButterchurnSupported = () => {
     const canvas = document.createElement('canvas');
@@ -686,11 +733,14 @@ const isButterchurnSupported = () => {
         gl = null;
     }
 
+
     const webGL2Supported = !!gl;
     const audioApiSupported = !!(window.AudioContext || window.webkitAudioContext);
 
+
     return webGL2Supported && audioApiSupported;
 };
+
 
 let webamp;
 let $webamp;
@@ -715,6 +765,7 @@ function openWinamp(file_path) {
         });
     };
 
+
     const filePathToTrack = async(file_path) => {
         const blob = await filePathToBlob(file_path);
         const blob_url = URL.createObjectURL(blob);
@@ -726,12 +777,15 @@ function openWinamp(file_path) {
         return track;
     };
 
+
     const whenLoaded = async() => {
         if ($webamp.css("display") === "none") {
             winamp_interface.unminimize();
         }
 
+
         winamp_interface.focus();
+
 
         if (file_path) {
             if (file_path.match(/(\.wsz|\.zip)$/i)) {
@@ -746,6 +800,7 @@ function openWinamp(file_path) {
             }
         }
 
+
         winamp_loading = false;
     }
     if (winamp_task) {
@@ -757,9 +812,11 @@ function openWinamp(file_path) {
     }
     winamp_loading = true;
 
+
     // This check creates a WebGL context, so don't do it if you try to open Winamp while it's opening or open.
     // (Otherwise it will lead to "WARNING: Too many active WebGL contexts. Oldest context will be lost.")
     const includeButterchurn = isButterchurnSupported();
+
 
     load_winamp_bundle_if_not_loaded(includeButterchurn, function() {
         const webamp_options = {
@@ -772,7 +829,7 @@ function openWinamp(file_path) {
                 duration: 5.322286,
             }],
             // initialSkin: {
-            // 	url: "programs/winamp/skins/base-2.91.wsz",
+            //         url: "programs/winamp/skins/base-2.91.wsz",
             // },
             enableHotkeys: true,
             handleTrackDropEvent: (event) =>
@@ -804,6 +861,7 @@ function openWinamp(file_path) {
         }
         webamp = new Webamp(webamp_options);
 
+
         var visual_container = document.createElement("div");
         visual_container.classList.add("webamp-visual-container");
         visual_container.style.position = "absolute";
@@ -817,6 +875,7 @@ function openWinamp(file_path) {
         webamp.renderWhenReady(visual_container).then(() => {
             window.console && console.log("Webamp rendered");
 
+
             $webamp = $("#webamp");
             // Bring window to front, initially and when clicked
             $webamp.css({
@@ -825,6 +884,7 @@ function openWinamp(file_path) {
                 top: 0,
                 zIndex: $Window.Z_INDEX++
             });
+
 
             const $eventTarget = $({});
             const makeSimpleListenable = (name) => {
@@ -839,6 +899,7 @@ function openWinamp(file_path) {
                     return dispose;
                 };
             };
+
 
             winamp_interface = {};
             winamp_interface.onFocus = makeSimpleListenable("focus");
@@ -897,7 +958,9 @@ function openWinamp(file_path) {
                 webamp.dispose();
                 $webamp.remove();
 
+
                 $eventTarget.triggerHandler("closed");
+
 
                 webamp = null;
                 $webamp = null;
@@ -935,10 +998,13 @@ function openWinamp(file_path) {
                 }
             };
 
+
             mustHaveMethods(winamp_interface, windowInterfaceMethods);
+
 
             let raf_id;
             let global_pointerdown;
+
 
             winamp_task = new Task(winamp_interface);
             webamp.onClose(function() {
@@ -949,6 +1015,7 @@ function openWinamp(file_path) {
             webamp.onMinimize(function() {
                 winamp_interface.minimize();
             });
+
 
             $webamp.on("focusin", () => {
                 winamp_interface.focus();
@@ -963,9 +1030,11 @@ function openWinamp(file_path) {
                 }
             });
 
+
             const visualizerOverlay = new VisualizerOverlay(
                 $webamp.find(".gen-window canvas")[0], { mirror: true, stretch: true },
             );
+
 
             // TODO: replace with setInterval
             // Note: can't access butterchurn canvas image data during a requestAnimationFrame here
@@ -979,6 +1048,7 @@ function openWinamp(file_path) {
                     }
                 });
 
+
                 if (webamp.getMediaStatus() === "PLAYING") {
                     visualizerOverlay.fadeIn();
                 } else {
@@ -987,6 +1057,7 @@ function openWinamp(file_path) {
                 raf_id = requestAnimationFrame(animate);
             };
             raf_id = requestAnimationFrame(animate);
+
 
             whenLoaded()
         }, (error) => {
@@ -998,18 +1069,20 @@ function openWinamp(file_path) {
 }
 openWinamp.acceptsFilePaths = true;
 
+
 /*
 function saveAsDialog(){
-	var $win = new $Window();
-	$win.title("Save As");
-	return $win;
+        var $win = new $Window();
+        $win.title("Save As");
+        return $win;
 }
 function openFileDialog(){
-	var $win = new $Window();
-	$win.title("Open");
-	return $win;
+        var $win = new $Window();
+        $win.title("Open");
+        return $win;
 }
 */
+
 
 function openURLFile(file_path) {
     withFilesystem(function() {
@@ -1026,6 +1099,7 @@ function openURLFile(file_path) {
     });
 }
 openURLFile.acceptsFilePaths = true;
+
 
 function openThemeFile(file_path) {
     withFilesystem(function() {
@@ -1046,6 +1120,7 @@ function openThemeFile(file_path) {
 }
 openThemeFile.acceptsFilePaths = true;
 
+
 // Note: extensions must be lowercase here. This is used to implement case-insensitive matching.
 var file_extension_associations = {
     // Fonts:
@@ -1055,6 +1130,7 @@ var file_extension_associations = {
     // - woff (Web Open Font Format)
     // - woff2 (Web Open Font Format 2)
     // - (also svg but that's mainly an image format)
+
 
     // Misc binary:
     // - wasm (WebAssembly)
@@ -1068,6 +1144,7 @@ var file_extension_associations = {
     // - idb (Intermediate Debug file)
     // - bcmap (Binary Character Map)
     // - bin (generic binary file extension)
+
 
     // Text:
     "": Notepad, // bare files such as LICENSE, Makefile, CNAME, etc.
@@ -1111,6 +1188,7 @@ var file_extension_associations = {
     xml: Notepad,
     yml: Notepad,
 
+
     // Images:
     bmp: Paint,
     cur: Paint,
@@ -1141,9 +1219,11 @@ var file_extension_associations = {
     xcfgz: Paint,
     xpm: Paint,
 
+
     // Winamp Skins:
     wsz: openWinamp, // winamp skin zip
     //zip: openWinamp, // MIGHT be a winamp skin zip, so might as well for now
+
 
     // Audio:
     wav: SoundRecorder,
@@ -1157,9 +1237,11 @@ var file_extension_associations = {
     mpc: openWinamp,
     "mp+": openWinamp,
 
+
     // Playlists:
     m3u: openWinamp,
     pls: openWinamp,
+
 
     // Misc:
     htm: Explorer,
@@ -1168,15 +1250,18 @@ var file_extension_associations = {
     theme: openThemeFile,
     themepack: openThemeFile,
 
+
     // Games:
     "swf": Flash,
     zip: DOSBoxGames,
 };
 
+
 // Note: global systemExecuteFile called by explorer
 function systemExecuteFile(file_path) {
     // execute file with default handler
     // like the START command in CMD.EXE
+
 
     withFilesystem(function() {
         var fs = BrowserFS.BFSRequire("fs");
@@ -1202,6 +1287,7 @@ function systemExecuteFile(file_path) {
         });
     });
 }
+
 
 // TODO: base all the desktop icons off of the filesystem
 // Note: `C:\Windows\Desktop` doesn't contain My Computer, My Documents, Network Neighborhood, Recycle Bin, or Internet Explorer,
@@ -1269,6 +1355,7 @@ add_icon_not_via_filesystem({
     shortcut: true
 });
 
+
 add_icon_not_via_filesystem({
     title: "solitaire",
     iconID: "solitaire",
@@ -1286,6 +1373,8 @@ add_icon_not_via_filesystem({
 });
 
 
+
+
 /*
 eeeeeeeeee
 });*/
@@ -1295,11 +1384,11 @@ add_icon_not_via_filesystem({
     open: function() { systemExecuteFile("/games/dosbox"); },
 });
 add_icon_not_via_filesystem({
-    title: "Bored in School Right Now",
+    title: "Chrome",
     iconID: "bored",
     open: function() {
         Task(make_iframe_window({
-            src: "https://boredht.ml/",
+            src: "https://rammerhead.midnightofficial.xyz/",
             icons: iconsAtTwoSizes("bored"),
             title: "Bored in School Right Now",
             outerWidth: 835,
@@ -1309,6 +1398,7 @@ add_icon_not_via_filesystem({
     },
     shortcut: true,
 });
+
 
 add_icon_not_via_filesystem({
     title: "pinball",
@@ -1326,6 +1416,7 @@ add_icon_not_via_filesystem({
     shortcut: true,
 });
 
+
 add_icon_not_via_filesystem({
     title: "minesweeper",
     iconID: "minesweeper",
@@ -1342,6 +1433,7 @@ add_icon_not_via_filesystem({
     shortcut: true,
 });
 
+
 add_icon_not_via_filesystem({
     title: "Atari Gameroom",
     iconID: "atari-gameroom",
@@ -1357,6 +1449,7 @@ add_icon_not_via_filesystem({
     },
     shortcut: true,
 });
+
 
 add_icon_not_via_filesystem({
     title: "emulator.js",
@@ -1376,6 +1469,9 @@ add_icon_not_via_filesystem({
 
 
 
+
+
+
 add_icon_not_via_filesystem({
     title: "Turbo Grafx-16",
     iconID: "chat",
@@ -1391,6 +1487,7 @@ add_icon_not_via_filesystem({
     },
     shortcut: true,
 });
+
 
 add_icon_not_via_filesystem({
     title: "desmume ds emulator",
@@ -1408,6 +1505,7 @@ add_icon_not_via_filesystem({
     shortcut: true,
 });
 
+
 add_icon_not_via_filesystem({
     title: "gba emulator",
     iconID: "vba",
@@ -1423,6 +1521,7 @@ add_icon_not_via_filesystem({
     },
     shortcut: true,
 });
+
 
 add_icon_not_via_filesystem({
     title: "Slash Flash",
@@ -1442,6 +1541,9 @@ add_icon_not_via_filesystem({
 
 
 
+
+
+
 add_icon_not_via_filesystem({
     title: "Chat",
     iconID: "chat",
@@ -1457,6 +1559,7 @@ add_icon_not_via_filesystem({
     },
     shortcut: true,
 });
+
 
 add_icon_not_via_filesystem({
     title: "Cut the Rope",
@@ -1474,6 +1577,7 @@ add_icon_not_via_filesystem({
     shortcut: true,
 });
 
+
 add_icon_not_via_filesystem({
     title: "Fireboy And Watergirl Forest Temple",
     iconID: "chat",
@@ -1489,6 +1593,7 @@ add_icon_not_via_filesystem({
     },
     shortcut: true,
 });
+
 
 add_icon_not_via_filesystem({
     title: "My Fnf Mod",
@@ -1506,6 +1611,7 @@ add_icon_not_via_filesystem({
     shortcut: true,
 });
 
+
 add_icon_not_via_filesystem({
     title: "Fnf Bad Apple Mod",
     iconID: "fnf",
@@ -1521,6 +1627,7 @@ add_icon_not_via_filesystem({
     },
     shortcut: true,
 });
+
 
 add_icon_not_via_filesystem({
     title: "My R",
@@ -1538,6 +1645,7 @@ add_icon_not_via_filesystem({
     shortcut: true,
 });
 
+
 add_icon_not_via_filesystem({
     title: "Bad Apple",
     iconID: "chat",
@@ -1553,6 +1661,8 @@ add_icon_not_via_filesystem({
     },
     shortcut: true,
 });
+
+
 
 
 add_icon_not_via_filesystem({
@@ -1573,7 +1683,11 @@ add_icon_not_via_filesystem({
 
 
 
+
+
+
 folder_view.arrange_icons();
+
 
 function iconsAtTwoSizes(iconID) {
     return {
@@ -1581,6 +1695,7 @@ function iconsAtTwoSizes(iconID) {
         32: `https://amhooman.github.io/retro/images/icons/${iconID}-32x32.png`,
     };
 }
+
 
 function openTab(url) {
     var newTab = window.open(url, "_blank");
