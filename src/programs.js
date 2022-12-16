@@ -1385,12 +1385,12 @@ add_icon_not_via_filesystem({
 });
 add_icon_not_via_filesystem({
     title: "Chrome",
-    iconID: "bored",
+    iconID: "internet-explorer",
     open: function() {
         Task(make_iframe_window({
             src: "https://rammerhead.midnightofficial.xyz/",
             icons: iconsAtTwoSizes("bored"),
-            title: "Bored in School Right Now",
+            title: "Chrome",
             outerWidth: 835,
             outerHeight: 500,
             resizable: true,
